@@ -1,15 +1,14 @@
-import MainContainer from "./MainContainer"
-import Sidebar from "./Sidebar"
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
 
-const Body =()=>{
-    return(
-        <>
-        <div className="grid grid-flow-col">
-            <Sidebar/>
-            <MainContainer/>
-            </div>
-        
-        </>
-    )
-}
-export default Body
+const Body = () => {
+  return (
+    <div  className="flex">
+      <Sidebar />
+      <Outlet />
+    </div>
+  );
+};
+
+export default Body;

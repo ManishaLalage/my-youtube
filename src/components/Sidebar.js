@@ -11,8 +11,15 @@ import { GoHistory,GoHome} from "react-icons/go";
 import { RxVideo } from "react-icons/rx";
 import {FaRegNewspaper,FaVideo} from "react-icons/fa";
 import {SiYoutubegaming} from "react-icons/si";
-import {GrHomeRounded} from "react-icons/gr"
+import {GrHomeRounded} from "react-icons/gr";
+import { useSelector } from "react-redux";
+import {Link} from "react-router-dom"
 const Sidebar = () => {
+  
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+
+  // Early Return pattern
+  if (!isMenuOpen) return null;
   const sideMenu = [
     {
       id: 1,
@@ -22,7 +29,7 @@ const Sidebar = () => {
           <span className="ml-7">Home</span>
         </>
       ),
-      href: "",
+      link: "/",
       style: "rounded-tr-md",
     },
     {
@@ -188,23 +195,30 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="col-span-1 px-3 py-2 shadow-lg ">
+      <div className="col-span-1 px-4 py-2 shadow-lg ">
         
           <ul >
-            {sideMenu.map(({ id, child, href, style }) => (
+            {sideMenu.map(({ id, child, href,link, style }) => (
               <li
                 key={id}
                 className={
                   " " + " " + style
                 }
               >
-                <a
+                {/* <a
                   href={href}
                   className="flex pl-4 py-3 hover:bg-gray-100
                    hover:rounded-lg text-black"
                 >
                   {child}
-                </a>
+                </a> */}
+
+                <Link to={link}  className="flex pl-4 py-3 hover:bg-gray-100
+                   hover:rounded-lg text-black">
+                  {child}
+                     {/* {link} */}
+                </Link>
+
               </li>
             ))}
           </ul>

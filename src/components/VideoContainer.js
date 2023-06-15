@@ -1,33 +1,36 @@
-import React, {useState,useEffect } from 'react';
-import VideoCard from './VideoCard';
-import { YOUTUBE_VIDEOS_API} from "../utils/Constant"
+import React, { useEffect, useState } from "react";
+import { YOUTUBE_VIDEOS_API } from "../utils/Constant"
+import VideoCard from "./VideoCard";
+import { Link } from "react-router-dom";
+import Shimmer from "./Shimmer";
 
 const VideoContainer = () => {
-    const [videos, setVideos] = useState([]);
-  
-    useEffect(() => {
-      getVideos();
-    }, []);
-  
-    const getVideos = async () => {
-      const data = await fetch(YOUTUBE_VIDEOS_API);
-      const json = await data.json();
-      setVideos(json.items);
-    };
-  
-    return (
-      <div className="flex flex-wrap">
-        {videos.map((video) => (
-    //   <VideoCard key={video.id} info={video} />
+  const [videos, setVideos] = useState([]);
 
+  useEffect(() => {
+    getVideos();
+  }, []);
 
-          <a href={"/watch?v=" + video.id}>
-            <VideoCard key={video.id} info={video} />
-          </a>
-        ))}
-      </div>
-    );
+  const getVideos = async () => {
+    const data = await fetch(YOUTUBE_VIDEOS_API);
+    const json = await data.json();
+    setVideos(json.items);
   };
-  
-  export default VideoContainer;
-  
+
+if (videos==0)return <Shimmer/>
+  // return videos?.length === 0 ? (
+  //   <h1 className="bg-red-300">juhi</h1>
+  // ) : 
+  return (
+    <div className="flex flex-wrap">
+      {videos.map((video) => (
+        <Link to={"/watch?v=" + video.id}>
+          <VideoCard key={video.id} info={video} />
+        </Link>
+      ))}
+
+    </div>
+  );
+};
+
+export default VideoContainer;
