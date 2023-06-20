@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { YOUTUBE_VIDEOS_API } from "../utils/Constant"
-import VideoCard from "./VideoCard";
+import VideoCard,{AdVideoCard} from "./VideoCard";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 
@@ -23,9 +23,10 @@ if (videos==0)return <Shimmer/>
   // ) : 
   return (
     <div className="flex flex-wrap">
+      {videos[0] && <AdVideoCard info={videos[7]} />}
       {videos.map((video) => (
         <Link to={"/watch?v=" + video.id}>
-          <VideoCard key={video.id} info={video} />
+          <VideoCard info={video} />
         </Link>
       ))}
 

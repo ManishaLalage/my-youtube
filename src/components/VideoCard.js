@@ -12,8 +12,16 @@ const VideoCard = ({info}) => {
         <li className="font-bold py-2">{title}</li>
         <li className="text-gray-600">{channelTitle}</li>
         <li className="text-gray-600">{viewCount} views</li>
-
       </ul>
+    </div>
+  );
+};
+
+
+export const AdVideoCard = ({ info }) => {
+  return (
+    <div className="ml-2 border border-red-900 ">
+      <VideoCard info={info} />
     </div>
   );
 };

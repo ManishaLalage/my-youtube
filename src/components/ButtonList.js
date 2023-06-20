@@ -25,8 +25,9 @@ const ButtonList = () => {
         
         <>
         {/* <Button key={id} /> */}
-        <button key={id}  className="px-5 py-2 m-2 bg-gray-200 hover:bg-slate-300 rounded-lg">{title}</button>
-
+        {/* <div key={id}> */}
+        < button key={id}   className="px-5 py-2 m-2 bg-gray-200 hover:bg-slate-300 rounded-lg">{title}</button>
+{/* </div> */}
         </>
       ))}
     </div>
